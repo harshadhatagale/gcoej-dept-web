@@ -3,6 +3,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html, body{
+  width: 100vw;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

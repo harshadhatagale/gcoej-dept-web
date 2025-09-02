@@ -5,7 +5,7 @@ export default function layout({children}) {
   return (
     <>
     <Navbar/>
-    <main className='py-2 px-2'>
+    <main className='py-2 px-2 mt-18 lg:px-8'>
         {children}
     </main>
     </>

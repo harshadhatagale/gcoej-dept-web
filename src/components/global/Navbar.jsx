@@ -8,7 +8,7 @@ import {
 import React, { useState } from "react"
 import Link from "next/link"
 import { CircleCheckIcon, CircleHelpIcon, CircleIcon, Menu, Monitor } from "lucide-react"
-import { Inter } from "next/font/google"
+import { Inter, Dela_Gothic_One } from "next/font/google"
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -23,6 +23,10 @@ import { ModeToggle } from "./ModeToggle"
 const inter = Inter({
     subsets: ['latin']
 })
+const logo_font= Dela_Gothic_One({
+    subsets:['latin'],
+    weight:'400'
+})
 
 export default function Navbar() {
     const [openNav, setOpenNav] = useState(false)
@@ -32,11 +36,11 @@ export default function Navbar() {
     return (
         // Desktop navbar
         <>
-            <NavigationMenu viewport={false} className={"w-[100vw] py-2 fixed top-0 left-0 bg-background border border-b-muted hidden md:block px-2 shadow-md rounded-md transition-all duration-300 ease-in-out"}>
+            <NavigationMenu viewport={false} className={"w-full justify-between py-2 fixed top-0 left-0 bg-background border border-b-muted hidden md:block px-2 shadow-md rounded-md transition-all duration-300 ease-in-out"}>
                 <NavigationMenuList>
                     <NavigationMenuItem className={'w-24'}>
                         <NavigationMenuLink asChild>
-                            <Link href={"/"} className={`${inter.className} flex gap-2 flex-row justify-center items-center text-[14px] font-bold hover:scale-105 transition-transform duration-200`}>Computer Engineering</Link>
+                            <Link href={"/"} className={`${logo_font.className} flex gap-2 flex-row justify-center items-center text-[14px] font-bold hover:scale-105 transition-transform duration-200`}>Computer Engineering</Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
