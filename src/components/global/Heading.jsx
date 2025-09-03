@@ -7,6 +7,6 @@ const font= Lilita_One({
 })
 export default function Heading({title}) {
   return (
-    <h2 className={`${font.className} text-2xl lg:text-4xl font-bold`}>{title}</h2>
+    <h2 className={`${font.className} p-1 text-2xl lg:text-4xl font-bold`}>{title}</h2>
   )
 }

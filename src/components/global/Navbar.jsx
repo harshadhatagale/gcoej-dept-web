@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/accordion"
 import React, { useState } from "react"
 import Link from "next/link"
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon, Menu, Monitor } from "lucide-react"
+import { Code, Menu, Terminal } from "lucide-react"
 import { Inter, Dela_Gothic_One } from "next/font/google"
 import {
     NavigationMenu,
@@ -16,16 +16,16 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { ModeToggle } from "./ModeToggle"
+import { NavLinks } from "@/lib/constant" // Adjust the import path as needed
 
 const inter = Inter({
     subsets: ['latin']
 })
-const logo_font= Dela_Gothic_One({
-    subsets:['latin'],
-    weight:'400'
+const logo_font = Dela_Gothic_One({
+    subsets: ['latin'],
+    weight: '400'
 })
 
 export default function Navbar() {
@@ -36,13 +36,21 @@ export default function Navbar() {
     return (
         // Desktop navbar
         <>
-            <NavigationMenu viewport={false} className={"w-full justify-between py-2 fixed top-0 left-0 bg-background border border-b-muted hidden md:block px-2 shadow-md rounded-md transition-all duration-300 ease-in-out"}>
+            <NavigationMenu viewport={false} className={"w-full z-50 justify-between py-2 fixed top-0 left-0 bg-background border border-b-muted hidden md:block px-2 shadow-md rounded-md transition-all duration-300 ease-in-out"}>
                 <NavigationMenuList>
-                    <NavigationMenuItem className={'w-24'}>
-                        <NavigationMenuLink asChild>
-                            <Link href={"/"} className={`${logo_font.className} flex gap-2 flex-row justify-center items-center text-[14px] font-bold hover:scale-105 transition-transform duration-200`}>Computer Engineering</Link>
-                        </NavigationMenuLink>
-                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+    <NavigationMenuLink asChild>
+        <Link 
+            href={"/"} 
+            className={`${logo_font.className} flex items-center gap-1 hover:scale-105 transition-transform duration-200 text-sm font-bold`}
+        >
+            <Terminal className="w-4 h-4 text-foreground font-bold" />
+            <span className="text-xs">Computer Engineering</span>
+        </Link>
+    </NavigationMenuLink>
+</NavigationMenuItem>
+                    
+                    {/* Home menu with special layout */}
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Home</NavigationMenuTrigger>
                         <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
@@ -62,146 +70,53 @@ export default function Navbar() {
                                         </a>
                                     </NavigationMenuLink>
                                 </li>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Introduction</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Vision & Mission</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Announcements</Link>
-                                </NavigationMenuLink>
+                                {NavLinks[0].subLinks.map((subLink) => (
+                                    <NavigationMenuLink key={subLink.name} asChild>
+                                        <Link href={subLink.link} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">
+                                            {subLink.name}
+                                        </Link>
+                                    </NavigationMenuLink>
+                                ))}
                             </ul>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">About Us</NavigationMenuTrigger>
-                        <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
-                            <ul className="grid w-[200px] gap-2">
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Vision & Mission</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Department History</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Infrastructure</Link>
-                                </NavigationMenuLink>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Academics</NavigationMenuTrigger>
-                        <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
-                            <ul className="grid w-[200px] gap-2">
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Cources Offered</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Syllabus</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Timetable</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Academic Calender</Link>
-                                </NavigationMenuLink>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Faculty & Staff</NavigationMenuTrigger>
-                        <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
-                            <ul className="grid w-[200px] gap-2">
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Faculties</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Staff</Link>
-                                </NavigationMenuLink>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Students</NavigationMenuTrigger>
-                        <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
-                            <ul className="grid w-[200px] gap-2">
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Activities</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Achievements</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Projects</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Placements</Link>
-                                </NavigationMenuLink>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Placements</NavigationMenuTrigger>
-                        <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
-                            <ul className="grid w-[200px] gap-2">
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Placement Stats</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Recruiters</Link>
-                                </NavigationMenuLink>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Events</NavigationMenuTrigger>
-                        <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
-                            <ul className="grid w-[200px] gap-2">
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Deparment Events</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Gallery</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Event Calender</Link>
-                                </NavigationMenuLink>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Downloads</NavigationMenuTrigger>
-                        <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
-                            <ul className="grid w-[200px] gap-2">
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Syllabus</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">Lab Manuals</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">PYQ's</Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">E-Books</Link>
-                                </NavigationMenuLink>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
+
+                    {/* Other navigation items */}
+                    {NavLinks.slice(1).map((navItem) => (
+                        <NavigationMenuItem key={navItem.name}>
+                            <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">
+                                {navItem.name}
+                            </NavigationMenuTrigger>
+                            <NavigationMenuContent className="animate-in fade-in-80 zoom-in-95 duration-300">
+                                <ul className="grid w-[200px] gap-2 p-2">
+                                    {navItem.subLinks.map((subLink) => (
+                                        <NavigationMenuLink key={subLink.name} asChild>
+                                            <Link href={subLink.link} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary">
+                                                {subLink.name}
+                                            </Link>
+                                        </NavigationMenuLink>
+                                    ))}
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                    ))}
+                    
                     <NavigationMenuItem>
                         <ModeToggle />
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
-            <nav className={`${openNav ? "h-screen animate-in slide-in-from-top duration-500" : "py-2 animate-out slide-out-to-top duration-300"} transition-all w-full bg-background border border-b-muted fixed top-0 left-0 flex flex-col lg:hidden py-4 px-2 z-50`}>
+
+            {/* Mobile navbar */}
+            <nav className={`z-50 ${openNav ? "h-screen animate-in slide-in-from-top duration-500" : "py-2 animate-out slide-out-to-top duration-300"} transition-all w-full bg-background border border-b-muted fixed top-0 left-0 flex flex-col lg:hidden py-4 px-2 z-50`}>
                 <div className="flex justify-between items-center">
                     <Link href={"/"} className="hover:scale-105 transition-transform duration-200 font-bold">Computer Engineering</Link>
                     <Menu size={25} onClick={() => toggleNav()} className="cursor-pointer hover:rotate-90 transition-transform duration-300" />
                 </div>
                 <div className={`${openNav ? "block animate-in fade-in-50 duration-500" : "hidden animate-out fade-out-50 duration-300"}`}>
                     <Accordion type="single" collapsible>
-                        <AccordionItem value="link-1" className="border-b transition-colors duration-200 hover:bg-muted/50">
+                        {/* Home accordion item with special layout */}
+                        <AccordionItem value="home" className="border-b transition-colors duration-200 hover:bg-muted/50">
                             <AccordionTrigger className="hover:text-primary transition-colors duration-200">Home</AccordionTrigger>
                             <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
                                 <ul className="grid gap-2">
@@ -220,136 +135,39 @@ export default function Navbar() {
                                             </a>
                                         </div>
                                     </li>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Introduction</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Vision & Mission</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Announcements</Link>
-                                    </div>
+                                    {NavLinks[0].subLinks.map((subLink) => (
+                                        <div key={subLink.name} className="py-1">
+                                            <Link href={subLink.link} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">
+                                                {subLink.name}
+                                            </Link>
+                                        </div>
+                                    ))}
                                 </ul>
                             </AccordionContent>
                         </AccordionItem>
-                        <AccordionItem value="link-2" className="border-b transition-colors duration-200 hover:bg-muted/50">
-                            <AccordionTrigger className="hover:text-primary transition-colors duration-200">About Us</AccordionTrigger>
-                            <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
-                                <ul className="grid gap-2">
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Vision & Mission</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Department History</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Infrastructure</Link>
-                                    </div>
-                                </ul>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="link-3" className="border-b transition-colors duration-200 hover:bg-muted/50">
-                            <AccordionTrigger className="hover:text-primary transition-colors duration-200">Academics</AccordionTrigger>
-                            <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
-                                <ul className="grid gap-2">
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Cources Offered</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Syllabus</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Timetable</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Academic Calender</Link>
-                                    </div>
-                                </ul>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="link-4" className="border-b transition-colors duration-200 hover:bg-muted/50">
-                            <AccordionTrigger className="hover:text-primary transition-colors duration-200">Faculty & Staff</AccordionTrigger>
-                            <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
-                                <ul className="grid gap-2">
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Faculties</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Staff</Link>
-                                    </div>
-                                </ul>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="link-5" className="border-b transition-colors duration-200 hover:bg-muted/50">
-                            <AccordionTrigger className="hover:text-primary transition-colors duration-200">Students</AccordionTrigger>
-                            <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
-                                <ul className="grid gap-2">
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Activities</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Achievements</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Projects</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Placements</Link>
-                                    </div>
-                                </ul>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="link-6" className="border-b transition-colors duration-200 hover:bg-muted/50">
-                            <AccordionTrigger className="hover:text-primary transition-colors duration-200">Placements</AccordionTrigger>
-                            <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
-                                <ul className="grid gap-2">
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Placement Stats</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Recruiters</Link>
-                                    </div>
-                                </ul>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="link-8" className="border-b transition-colors duration-200 hover:bg-muted/50">
-                            <AccordionTrigger className="hover:text-primary transition-colors duration-200">Events</AccordionTrigger>
-                            <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
-                                <ul className="grid gap-2">
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Deparment Events</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Gallery</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Event Calender</Link>
-                                    </div>
-                                </ul>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="link-9" className="border-b transition-colors duration-200 hover:bg-muted/50">
-                            <AccordionTrigger className="hover:text-primary transition-colors duration-200">Downloads</AccordionTrigger>
-                            <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
-                                <ul className="grid gap-2">
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Syllabus</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">Lab Manuals</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">PYQ's</Link>
-                                    </div>
-                                    <div className="py-1">
-                                        <Link href={"/"} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">E-Books</Link>
-                                    </div>
-                                </ul>
-                            </AccordionContent>
-                        </AccordionItem>
+
+                        {/* Other accordion items */}
+                        {NavLinks.slice(1).map((navItem, index) => (
+                            <AccordionItem key={navItem.name} value={`link-${index + 1}`} className="border-b transition-colors duration-200 hover:bg-muted/50">
+                                <AccordionTrigger className="hover:text-primary transition-colors duration-200">
+                                    {navItem.name}
+                                </AccordionTrigger>
+                                <AccordionContent className="animate-in fade-in-50 slide-in-from-top-5 duration-300">
+                                    <ul className="grid gap-2">
+                                        {navItem.subLinks.map((subLink) => (
+                                            <div key={subLink.name} className="py-1">
+                                                <Link href={subLink.link} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">
+                                                    {subLink.name}
+                                                </Link>
+                                            </div>
+                                        ))}
+                                    </ul>
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </div>
-            </nav >
+            </nav>
         </>
     )
 }
