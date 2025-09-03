@@ -20,7 +20,7 @@ import {
 import { ModeToggle } from "./ModeToggle"
 import { NavLinks } from "@/lib/constant" // Adjust the import path as needed
 import { Button } from "../ui/button"
-
+import { motion } from "framer-motion"
 const inter = Inter({
     subsets: ['latin']
 })
@@ -45,7 +45,38 @@ export default function Navbar() {
                                 href={"/"}
                                 className={`${logo_font.className} flex items-center gap-1 hover:scale-105 transition-transform duration-200 text-sm font-bold`}
                             >
-                                <Terminal className="w-4 h-4 text-foreground font-bold" />
+                                <motion.div
+                                    className="relative inline-block"
+                                    animate={{
+                                        x: [0, -2, 2, -1, 1, 0],
+                                        y: [0, 1, -1, 0, 1, -1, 0],
+                                        rotate: [0, -1, 1, 0],
+                                        scale: [1, 1.05, 0.95, 1],
+                                    }}
+                                    transition={{
+                                        repeat: Infinity,
+                                        duration: 1.5,
+                                        ease: "easeInOut",
+                                    }}
+                                >
+                                    <Terminal className="w-6 h-6 text-foreground drop-shadow-[0_0_6px_rgba(0,255,0,0.7)]" />
+                                    {/* Optional extra layer for RGB glitch */}
+                                    <motion.div
+                                        className="absolute top-0 left-0 w-full h-full text-green-400"
+                                        style={{ clipPath: 'inset(0 0 0 0)' }}
+                                        animate={{
+                                            x: [1, -1, 2, -2, 0],
+                                            y: [-1, 2, -2, 1, 0],
+                                        }}
+                                        transition={{
+                                            repeat: Infinity,
+                                            duration: 1.5,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
+                                        <Terminal className="w-6 h-6 text-green-400 opacity-50" />
+                                    </motion.div>
+                                </motion.div>
                                 <span className="text-xs">Computer Engineering</span>
                             </Link>
                         </NavigationMenuLink>
@@ -115,7 +146,38 @@ export default function Navbar() {
                         href={"/"}
                         className={`${logo_font.className} flex items-center gap-1 hover:scale-105 transition-transform duration-200 text-sm font-bold`}
                     >
-                        <Terminal className="w-4 h-4 text-foreground font-bold" />
+                        <motion.div
+                            className="relative inline-block"
+                            animate={{
+                                x: [0, -2, 2, -1, 1, 0],
+                                y: [0, 1, -1, 0, 1, -1, 0],
+                                rotate: [0, -1, 1, 0],
+                                scale: [1, 1.05, 0.95, 1],
+                            }}
+                            transition={{
+                                repeat: Infinity,
+                                duration: 1.5,
+                                ease: "easeInOut",
+                            }}
+                        >
+                            <Terminal className="w-6 h-6 text-foreground drop-shadow-[0_0_6px_rgba(0,255,0,0.7)]" />
+                            {/* Optional extra layer for RGB glitch */}
+                            <motion.div
+                                className="absolute top-0 left-0 w-full h-full text-green-400"
+                                style={{ clipPath: 'inset(0 0 0 0)' }}
+                                animate={{
+                                    x: [1, -1, 2, -2, 0],
+                                    y: [-1, 2, -2, 1, 0],
+                                }}
+                                transition={{
+                                    repeat: Infinity,
+                                    duration: 1.5,
+                                    ease: "easeInOut",
+                                }}
+                            >
+                                <Terminal className="w-6 h-6 text-green-400 opacity-50" />
+                            </motion.div>
+                        </motion.div>
                         <span className="text-xs">Computer Engineering</span>
                     </Link>
                     <div className="flex gap-2">
