@@ -117,7 +117,10 @@ export default function Navbar() {
                         <Terminal className="w-4 h-4 text-foreground font-bold" />
                         <span className="text-xs">Computer Engineering</span>
                     </Link>
-                    <Menu size={25} onClick={() => toggleNav()} className="cursor-pointer hover:rotate-90 transition-transform duration-300" />
+                    <div className="flex gap-2">
+                        <ModeToggle/>
+                        <Menu size={25} onClick={() => toggleNav()} className="cursor-pointer hover:rotate-90 transition-transform duration-300" />
+                    </div>
                 </div>
                 <div className={`${openNav ? "block animate-in fade-in-50 duration-500" : "hidden animate-out fade-out-50 duration-300"}`}>
                     <Accordion type="single" collapsible>
