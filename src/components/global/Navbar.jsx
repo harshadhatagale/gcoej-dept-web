@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { ModeToggle } from "./ModeToggle"
 import { NavLinks } from "@/lib/constant" // Adjust the import path as needed
+import { Button } from "../ui/button"
 
 const inter = Inter({
     subsets: ['latin']
@@ -108,7 +109,7 @@ export default function Navbar() {
             </NavigationMenu>
 
             {/* Mobile navbar */}
-            <nav className={`z-50 ${openNav ? "h-screen animate-in slide-in-from-top duration-500" : "py-2 animate-out slide-out-to-top duration-300"} transition-all w-full bg-background border border-b-muted fixed top-0 left-0 flex flex-col lg:hidden py-4 px-2 z-50`}>
+            <nav className={`z-50 px-4 ${openNav ? "h-screen animate-in slide-in-from-top duration-500" : "py-2 animate-out slide-out-to-top duration-300"} transition-all w-full bg-background border border-b-muted fixed top-0 left-0 flex flex-col lg:hidden py-4 px-2 z-50`}>
                 <div className="flex justify-between items-center">
                     <Link
                         href={"/"}
@@ -119,7 +120,7 @@ export default function Navbar() {
                     </Link>
                     <div className="flex gap-2">
                         <ModeToggle/>
-                        <Menu size={25} onClick={() => toggleNav()} className="cursor-pointer hover:rotate-90 transition-transform duration-300" />
+                        <Button onClick={() => toggleNav()} variant={"outline"} size="icon"><Menu size={25} className="cursor-pointer hover:rotate-90 transition-transform duration-300" /></Button>
                     </div>
                 </div>
                 <div className={`${openNav ? "block animate-in fade-in-50 duration-500" : "hidden animate-out fade-out-50 duration-300"}`}>
