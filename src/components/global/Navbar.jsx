@@ -39,17 +39,17 @@ export default function Navbar() {
             <NavigationMenu viewport={false} className={"w-full z-50 justify-between py-2 fixed top-0 left-0 bg-background border border-b-muted hidden md:block px-2 shadow-md rounded-md transition-all duration-300 ease-in-out"}>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-    <NavigationMenuLink asChild>
-        <Link 
-            href={"/"} 
-            className={`${logo_font.className} flex items-center gap-1 hover:scale-105 transition-transform duration-200 text-sm font-bold`}
-        >
-            <Terminal className="w-4 h-4 text-foreground font-bold" />
-            <span className="text-xs">Computer Engineering</span>
-        </Link>
-    </NavigationMenuLink>
-</NavigationMenuItem>
-                    
+                        <NavigationMenuLink asChild>
+                            <Link
+                                href={"/"}
+                                className={`${logo_font.className} flex items-center gap-1 hover:scale-105 transition-transform duration-200 text-sm font-bold`}
+                            >
+                                <Terminal className="w-4 h-4 text-foreground font-bold" />
+                                <span className="text-xs">Computer Engineering</span>
+                            </Link>
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+
                     {/* Home menu with special layout */}
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="transition-all duration-200 hover:scale-105">Home</NavigationMenuTrigger>
@@ -100,7 +100,7 @@ export default function Navbar() {
                             </NavigationMenuContent>
                         </NavigationMenuItem>
                     ))}
-                    
+
                     <NavigationMenuItem>
                         <ModeToggle />
                     </NavigationMenuItem>
@@ -110,7 +110,13 @@ export default function Navbar() {
             {/* Mobile navbar */}
             <nav className={`z-50 ${openNav ? "h-screen animate-in slide-in-from-top duration-500" : "py-2 animate-out slide-out-to-top duration-300"} transition-all w-full bg-background border border-b-muted fixed top-0 left-0 flex flex-col lg:hidden py-4 px-2 z-50`}>
                 <div className="flex justify-between items-center">
-                    <Link href={"/"} className="hover:scale-105 transition-transform duration-200 font-bold">Computer Engineering</Link>
+                    <Link
+                        href={"/"}
+                        className={`${logo_font.className} flex items-center gap-1 hover:scale-105 transition-transform duration-200 text-sm font-bold`}
+                    >
+                        <Terminal className="w-4 h-4 text-foreground font-bold" />
+                        <span className="text-xs">Computer Engineering</span>
+                    </Link>
                     <Menu size={25} onClick={() => toggleNav()} className="cursor-pointer hover:rotate-90 transition-transform duration-300" />
                 </div>
                 <div className={`${openNav ? "block animate-in fade-in-50 duration-500" : "hidden animate-out fade-out-50 duration-300"}`}>
