@@ -119,7 +119,7 @@ export default function Navbar() {
                         <span className="text-xs">Computer Engineering</span>
                     </Link>
                     <div className="flex gap-2">
-                        <ModeToggle/>
+                        <ModeToggle />
                         <Button onClick={() => toggleNav()} variant={"outline"} size="icon"><Menu size={25} className="cursor-pointer hover:rotate-90 transition-transform duration-300" /></Button>
                     </div>
                 </div>
@@ -133,6 +133,7 @@ export default function Navbar() {
                                     <li>
                                         <div>
                                             <a
+                                                onClick={() => toggleNav()}
                                                 className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md transition-all duration-300 hover:scale-[1.02]"
                                                 href="/"
                                             >
@@ -147,7 +148,7 @@ export default function Navbar() {
                                     </li>
                                     {NavLinks[0].subLinks.map((subLink) => (
                                         <div key={subLink.name} className="py-1">
-                                            <Link href={subLink.link} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">
+                                            <Link onClick={() => toggleNav()} href={subLink.link} className="text-sm leading-none font-medium transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">
                                                 {subLink.name}
                                             </Link>
                                         </div>
@@ -166,7 +167,7 @@ export default function Navbar() {
                                     <ul className="grid gap-2">
                                         {navItem.subLinks.map((subLink) => (
                                             <div key={subLink.name} className="py-1">
-                                                <Link href={subLink.link} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">
+                                                <Link onClick={() => toggleNav()} href={subLink.link} className="text-sm leading-none transition-all duration-200 hover:translate-x-2 hover:text-primary block py-2">
                                                     {subLink.name}
                                                 </Link>
                                             </div>
